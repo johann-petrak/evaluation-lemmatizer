@@ -1,0 +1,3 @@
+*.gazbin
+/treetagger-3.2.1
+!/treetagger-3.2.1/.keepme

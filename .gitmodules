@@ -1,0 +1,12 @@
+[submodule "gateplugin-Java"]
+	path = gateplugin-Java
+	url = https://github.com/johann-petrak/gateplugin-Java.git
+[submodule "gateplugin-Lemmatizer"]
+	path = gateplugin-Lemmatizer
+	url = https://github.com/GateNLP/gateplugin-Lemmatizer.git
+[submodule "gateplugin-StringAnnotation"]
+	path = gateplugin-StringAnnotation
+	url = https://github.com/johann-petrak/gateplugin-StringAnnotation.git
+[submodule "gateplugin-Stanford_CoreNLP"]
+	path = gateplugin-Stanford_CoreNLP
+	url = https://github.com/GateNLP/gateplugin-Stanford_CoreNLP.git
