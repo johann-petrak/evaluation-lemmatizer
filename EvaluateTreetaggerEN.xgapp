@@ -436,14 +436,14 @@
               </localMap>
             </runtimeParams>
             <resourceType>com.jpetrak.gate.java.JavaScriptingPR</resourceType>
-            <resourceName>Java:eval-en-bnc</resourceName>
+            <resourceName>Java:eval</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
                 <entry>
                   <string>javaProgramUrl</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$java/eval-en-bnc.java</urlString>
+                    <urlString>$relpath$java/eval.java</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
               </localMap>

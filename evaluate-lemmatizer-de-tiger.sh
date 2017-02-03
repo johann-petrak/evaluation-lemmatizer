@@ -2,4 +2,4 @@
 
 mkdir logs
 # rm logs/*
-runPipeline.sh -Xmx5G  -r EvaluateLemmatizerDE.xgapp de-tiger
+runPipeline.sh -Xmx5G  -r EvaluateLemmatizerDE.xgapp "$@" 
