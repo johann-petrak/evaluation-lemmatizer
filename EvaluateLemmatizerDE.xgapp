@@ -20,68 +20,6 @@
     <collectionType>java.util.ArrayList</collectionType>
   </urlList>
   <application class="gate.util.persistence.ConditionalSerialAnalyserControllerPersistence">
-    <corpus class="gate.util.persistence.CorpusPersistence">
-      <docList>
-        <gate.util.persistence.LRPersistence>
-          <resourceType>gate.corpora.DocumentImpl</resourceType>
-          <resourceName>tiger_s10102_s10111.xml_00014</resourceName>
-          <initParams class="gate.util.persistence.MapPersistence">
-            <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-            <localMap>
-              <entry>
-                <string>sourceUrl</string>
-                <gate.util.persistence.PersistenceManager-URLHolder>
-                  <urlString>$relpath$Tiger/tiger_s10102_s10111.xml</urlString>
-                </gate.util.persistence.PersistenceManager-URLHolder>
-              </entry>
-              <entry>
-                <string>preserveOriginalContent</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>collectRepositioningInfo</string>
-                <boolean>false</boolean>
-              </entry>
-              <entry>
-                <string>markupAware</string>
-                <boolean>true</boolean>
-              </entry>
-              <entry>
-                <string>sourceUrlEndOffset</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>stringContent</string>
-                <string></string>
-              </entry>
-              <entry>
-                <string>mimeType</string>
-                <null/>
-              </entry>
-              <entry>
-                <string>encoding</string>
-                <string>UTF-8</string>
-              </entry>
-              <entry>
-                <string>sourceUrlStartOffset</string>
-                <null/>
-              </entry>
-            </localMap>
-          </initParams>
-        </gate.util.persistence.LRPersistence>
-      </docList>
-      <resourceType>gate.corpora.CorpusImpl</resourceType>
-      <resourceName>Corpus for tiger_s10102_s10111.xml_00014</resourceName>
-      <initParams class="gate.util.persistence.MapPersistence">
-        <mapType>gate.util.SimpleFeatureMapImpl</mapType>
-        <localMap>
-          <entry>
-            <string>documentsList</string>
-            <null/>
-          </entry>
-        </localMap>
-      </initParams>
-    </corpus>
     <strategiesList class="gate.util.persistence.CollectionPersistence">
       <localList>
         <gate.util.persistence.AnalyserRunningStrategyPersistence>
@@ -163,14 +101,14 @@
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
                 <entry>
-                  <string>encoding</string>
-                  <string>UTF-8</string>
-                </entry>
-                <entry>
                   <string>tokeniserRulesURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
                     <urlString>$gatehome$plugins/ANNIE/resources/tokeniser/DefaultTokeniser.rules</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
+                </entry>
+                <entry>
+                  <string>encoding</string>
+                  <string>UTF-8</string>
                 </entry>
                 <entry>
                   <string>transducerGrammarURL</string>
@@ -218,14 +156,14 @@
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
                 <entry>
-                  <string>encoding</string>
-                  <string>UTF-8</string>
-                </entry>
-                <entry>
                   <string>gazetteerListsURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
                     <urlString>$gatehome$plugins/ANNIE/resources/sentenceSplitter/gazetteer/lists.def</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
+                </entry>
+                <entry>
+                  <string>encoding</string>
+                  <string>UTF-8</string>
                 </entry>
                 <entry>
                   <string>transducerURL</string>

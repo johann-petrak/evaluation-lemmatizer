@@ -277,7 +277,7 @@
               </localMap>
             </runtimeParams>
             <resourceType>gate.taggerframework.GenericTagger</resourceType>
-            <resourceName>GenericTagger:TreetaggerEN</resourceName>
+            <resourceName>GenericTagger:TreetaggerDE</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
               <localMap>
