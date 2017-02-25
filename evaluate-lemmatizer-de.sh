@@ -2,4 +2,6 @@
 
 mkdir logs
 # rm logs/*
-runPipeline.sh -Xmx5G  -r EvaluateLemmatizerDE.xgapp "$@" 
+dir=${1%/}
+export RUNPIPELINE_LOG_PREFIX=lemmatizer-de-$dir
+runPipeline.sh -Xmx5G -r EvaluateLemmatizerDE.xgapp "$@" 
