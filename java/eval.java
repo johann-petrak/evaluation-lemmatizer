@@ -10,8 +10,8 @@ private boolean DEBUG = true;
 private int nDocs = 0;
 private int nCorrect = 0;
 private int nTotal = 0;
-private int nWord = 0;
-private int nOther = 0;
+//private int nWord = 0;
+//private int nOther = 0;
 private int nWithOneResponse = 0;
 private int nWithZeroResponse = 0;
 private int nWithNResponse = 0;
@@ -47,25 +47,26 @@ public void execute() {
     }
     
     FeatureMap fm = token.getFeatures();
-    // we want to restrict the comparison to only tokens of kind "word" since
-    // the way how lemmata are defined for non-word tokens may be different 
-    // between corpora
-    // However we also want to base the decision if something is a word token
-    // on the gold corpus, not what GATE decides, so we use the info from
-    // the target token for this.
-    String kind = (String)fm.get("kind");    
-    // we do not have the kind feature for the Tiger tokens, so we 
-    // use the following heuristic: if the pos tag does not start with "$"
-    // we assume it is a word.    
-    if(kind==null || kind.isEmpty()) {
-      String posKey = (String)fm.get("pos");
-      kind = "unknown";
-      if(!posKey.startsWith("$")) kind = "word";
+    // Most corpora use as the lemma of punctuation etc the original string.
+    // However, some corpora do not include a target lemma for these, e.g.
+    // the tiger corpus. Since we try to make a fair comparison we use the 
+    // original string if the corpus is one of those where a lemma is not set
+    // for punctuation (so far only tiger).
+    // Currently we detect the corpus where we need to copy over the string to 
+    // the target lemma if it is punctuation by checking for a pos tag that starts 
+    // with $
+    boolean copyLemma = false;
+    String posKey = (String)fm.get("pos");
+    if(posKey != null) {
+      if(posKey.startsWith("$")) copyLemma = true;
     }
 
     ///////////////////////// ACTUAL EVALUATION CODE
-    if(kind.equals("word")) {
-      nWord += 1;
+
+    // this if is left over from when we only evaluated over words, but we 
+    // now evaluate over all tokens
+    //if(true) {
+      //nWord += 1;
       // find our own tokens: since we generate them in GATE, we could find
       // situations where the GATE tokens do not properly match the target tokens.
       // However, some target corpora also support multi-token words .. these
@@ -139,9 +140,9 @@ public void execute() {
       } else {
         nWithNResponse += 1;
       }
-    } else {
-      nOther += 1;
-    }
+    //} else {
+    //  nOther += 1;
+    //}
   }
 }
 
@@ -151,8 +152,8 @@ public void controllerStarted() {
   nDocs = 0;
   nCorrect = 0;
   nTotal = 0;
-  nWord = 0;
-  nOther = 0;
+  //nWord = 0;
+  //nOther = 0;
   nWithOneResponse = 0;
   nWithZeroResponse = 0;
   nWithNResponse = 0;
@@ -174,8 +175,8 @@ public void controllerFinished() {
   System.out.println("Documents:              "+nDocs);
   System.out.println("Total target tokens:    "+nTotal);
   System.out.println("Multi-token words:      "+nMultiToken);
-  System.out.println("Target word tokens:     "+nWord);
-  System.out.println("Target other tokens:    "+nOther);
+  //System.out.println("Target word tokens:     "+nWord);
+  //System.out.println("Target other tokens:    "+nOther);
   System.out.println("Word token, w/ 0 Resp:  "+nWithZeroResponse);
   System.out.println("Word token, w/ N Resp:  "+nWithNResponse);
   System.out.println("Word token, w/ 1 Resp:  "+nWithOneResponse);

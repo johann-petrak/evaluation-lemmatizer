@@ -24,11 +24,10 @@ The following is required to use this directory
 
 Before running the evaluation the directories for each corpus must be copied or linked into the 
 current directory with these names:
-* British National Corpus: ./en-bnc
-* German Tiger Corpus: ./de-tiger
-* French Treebank: ./fr-treebank
-* French Universal Dependencies Corpus: ./fr-udep
-* Spanish Universal Dependencies Corpus: ./es-udep
+* British National Corpus: ./bnc-corpus-gate
+* German Tiger Corpus: ./tiger-gate
+* French Universal Dependencies Corpus: ./UD_French_gate
+* Spanish Universal Dependencies Corpus: ./UD_Spanish_gate
 
 ## Running the evaluations
 

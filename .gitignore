@@ -3,3 +3,6 @@
 !/treetagger-3.2.1/.keepme
 *~
 /logs
+/UD_*
+/tiger-gate
+/bnc-corpus-gate
