@@ -8,7 +8,10 @@ import java.util.*;
 private boolean DEBUG = true;
 
 private int nDocs = 0;
-private int nCorrect = 0;
+private int nCorrect = 0;      // case insensitive
+private int nCorrectCase = 0;  // case sensitive 
+private int nCorrectBaseline = 0;  // use original string, case insensitive
+private int nCorrectBaselineCase = 0; // orig string, case sensitive
 private int nTotal = 0;
 //private int nWord = 0;
 //private int nOther = 0;
@@ -21,6 +24,7 @@ private int nTargetLemmaEmpty = 0;
 private int nTargetLemmaFound = 0;
 private int nMultiToken = 0;
 private int nPosTotal = 0;
+private int nPosEmpty = 0;
 private int nPosCorrect = 0;
 
 private Map<String,Integer> correctByType = new TreeMap<String,Integer>();
@@ -81,6 +85,8 @@ public void execute() {
         if(coextResponses.size() == 1) {
           nWithOneCoextensive += 1;
           Annotation response = gate.Utils.getOnlyAnn(coextResponses);
+          String respString = gate.Utils.stringFor(doc,response);
+          if(respString == null) respString = "";
           String targetLemma = (String)fm.get("lemma");
           if(targetLemma == null) targetLemma = "";
           if(targetLemma.equals("--")) targetLemma = "";
@@ -90,6 +96,10 @@ public void execute() {
           String responsePOS = (String)fmResp.get("upos");
           if(targetPOS==null) targetPOS = "";
           if(responsePOS==null) responsePOS = "";
+          if(responsePOS.isEmpty()) {
+            nPosEmpty += 1;
+            System.out.println("DEBUGPOS\tNO_UPOS\t"+fmResp.get("category"));
+          }
           nPosTotal += 1;
           if(targetPOS.equals(responsePOS)) {
             nPosCorrect += 1;
@@ -101,11 +111,12 @@ public void execute() {
               posMismatches.put(entry,1);
             }
           }
-          if(targetLemma.isEmpty()) {
+          String respLemma = (String)fmResp.get("lemma");
+          if(copyLemma) targetLemma = respLemma;
+          if(targetLemma == null || targetLemma.isEmpty()) {
             nTargetLemmaEmpty += 1;
           } else {
             nTargetLemmaFound += 1;
-            String respLemma = (String)fmResp.get("lemma");
             String status = (String)fmResp.get("lemmatizer.status");
             if(status == null) {
               status = "(null)";
@@ -130,6 +141,15 @@ public void execute() {
             } else {
               if(DEBUG) System.out.println("DEBUG\t"+status+"\t"+fmResp.get("upos")+"/"+fmResp.get("category")+"\t"+targetLemma+"\t"+respLemma);
             }
+            if(targetLemma.equals(respLemma)) {
+              nCorrectCase += 1;
+            }
+            if(targetLemma.toLowerCase().equals(respString.toLowerCase())) {
+              nCorrectBaseline += 1;
+            }
+            if(targetLemma.equals(respString)) {
+              nCorrectBaselineCase += 1;
+            }
           } // else of targetLemma is empty
         } else { // if one coext response
           // one response, but not coextensive
@@ -151,6 +171,9 @@ public void controllerStarted() {
   System.err.println("DEBUG: running controller started");
   nDocs = 0;
   nCorrect = 0;
+  nCorrectCase = 0;
+  nCorrectBaseline = 0;
+  nCorrectBaselineCase = 0;
   nTotal = 0;
   //nWord = 0;
   //nOther = 0;
@@ -164,6 +187,7 @@ public void controllerStarted() {
   nMultiToken = 0;
   nPosTotal = 0;
   nPosCorrect = 0;
+  nPosEmpty = 0;
   correctByType = new TreeMap<String,Integer>();
   totalByType = new TreeMap<String,Integer>();
   posMismatches = new TreeMap<String,Integer>();
@@ -186,6 +210,7 @@ public void controllerFinished() {
   System.out.println("  - has lemma:          "+nTargetLemmaFound);
   System.out.println("POS total:              "+nPosTotal);
   System.out.println("POS correct:            "+nPosCorrect);
+  System.out.println("POS empty (no upos):    "+nPosEmpty);
   for(String key : posMismatches.keySet()) {
     System.out.println("  "+key+": "+posMismatches.get(key));
   }
@@ -193,13 +218,28 @@ public void controllerFinished() {
   System.out.println("Target word toekns with 1 Resp, coext, has lemma are the ones used for evaluation of which:");
   System.out.println("  Correct:      "+nCorrect);
   System.out.println("  Empty lemma:  "+nTargetLemmaEmpty);
-  System.out.println("  Recall/Acc:   "+(((double)nCorrect)/((double)nWithOneResponse)));
+  System.out.println("  Recall/Acc(coext/hasTargetLemma)[ci]:       "+(((double)nCorrect)/((double)nTargetLemmaFound)));
+  System.out.println("  Recall/Acc(coext/oneResponse)[ci]:          "+(((double)nCorrect)/((double)nWithOneResponse)));
+  System.out.println("  Recall/Acc(coext/totalTargetTokens)[ci]:    "+(((double)nCorrect)/((double)nTotal)));
+  
+  System.out.println("  Recall/Acc(baseline/hasTargetLemma)[ci]:    "+(((double)nCorrectBaseline)/((double)nTargetLemmaFound)));
+  System.out.println("  Recall/Acc(baseline/oneResponse)[ci]:       "+(((double)nCorrectBaseline)/((double)nWithOneResponse)));
+  System.out.println("  Recall/Acc(baseline/totalTargetTokens)[ci]: "+(((double)nCorrectBaseline)/((double)nTotal)));
+  
+  System.out.println("  Recall/Acc(coext/hasTargetLemma)[cs]:       "+(((double)nCorrectCase)/((double)nTargetLemmaFound)));
+  System.out.println("  Recall/Acc(coext/oneResponse)[cs]:          "+(((double)nCorrectCase)/((double)nWithOneResponse)));
+  System.out.println("  Recall/Acc(coext/totalTargetTokens)[cs]:    "+(((double)nCorrectCase)/((double)nTotal)));
+  
+  System.out.println("  Recall/Acc(baseline/hasTargetLemma)[cs]:    "+(((double)nCorrectBaselineCase)/((double)nTargetLemmaFound)));
+  System.out.println("  Recall/Acc(baseline/oneResponse)[cs]:       "+(((double)nCorrectBaselineCase)/((double)nWithOneResponse)));
+  System.out.println("  Recall/Acc(baseline/totalTargetTokens)[cs]: "+(((double)nCorrectBaselineCase)/((double)nTotal)));
+  
   System.out.println("  Correct/Incorrect/Acc / %ofAll by status:");
   for(String key : correctByType.keySet()) {
     int correct = correctByType.get(key);
     int total   = totalByType.get(key);
     int incorrect = total - correct;
     System.out.println("    - "+key+": "+correct+" / "+incorrect+" / "+
-    (((double)correct)/((double)total))+" / "+((double)total)/((double)nWithOneResponse));
+    (((double)correct)/((double)total))+" / "+((double)total)/((double)nTargetLemmaFound));
   }
 }
