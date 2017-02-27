@@ -21,6 +21,6 @@ CMD=${TREETAGGER_HOME}/cmd
 LIB=${TREETAGGER_HOME}/lib
 
 TAGGER=${BIN}/tree-tagger
-PARFILE=${LIB}/spanish-utf8.par
+PARFILE=${LIB}/spanish-ancora-utf8.par
 
 cat $* | $TAGGER -token -lemma -sgml $PARFILE

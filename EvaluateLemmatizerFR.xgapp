@@ -326,7 +326,7 @@
                 <entry>
                   <string>configFileURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$postag-mapping/de-tiger-udep.def</urlString>
+                    <urlString>$relpath$postag-mapping/fr-ftb-udep.def</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
               </localMap>
@@ -415,7 +415,7 @@
                 <entry>
                   <string>configFileURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$postag-mapping/de-tiger-udep.def</urlString>
+                    <urlString>$relpath$postag-mapping/fr-ftb-udep.def</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
               </localMap>
@@ -460,7 +460,7 @@
                 </entry>
                 <entry>
                   <string>languageCode</string>
-                  <string>de</string>
+                  <string>fr</string>
                 </entry>
                 <entry>
                   <string>posFeature</string>
