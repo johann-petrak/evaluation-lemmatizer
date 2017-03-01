@@ -48,6 +48,9 @@ evaluate the lemmatizer PR on the English British National corpus or
 `./evaluate-treetager-de.sh UD_German_gate_train` to evaluate the treetagger
 on the training set of the German Universal dependencies corpus.
 
+For each evaluation, a detailed log that also includes the accuracy for the run and 
+a file containing timing information is created in the `./logs` directory.
+
 ## License
 
 GPL 3.0 see file LICENSE.txt
