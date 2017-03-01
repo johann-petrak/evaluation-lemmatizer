@@ -7,3 +7,6 @@
 [submodule "gateplugin-Stanford_CoreNLP"]
 	path = gateplugin-Stanford_CoreNLP
 	url = https://github.com/GateNLP/gateplugin-Stanford_CoreNLP.git
+[submodule "gateplugin-dict-lemmatizer"]
+	path = gateplugin-dict-lemmatizer
+	url = https://github.com/GateNLP/gateplugin-dict-lemmatizer.git

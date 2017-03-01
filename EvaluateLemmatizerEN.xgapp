@@ -5,7 +5,7 @@
         <urlString>$gatehome$plugins/ANNIE/</urlString>
       </gate.util.persistence.PersistenceManager-URLHolder>
       <gate.util.persistence.PersistenceManager-URLHolder>
-        <urlString>$relpath$gateplugin-Lemmatizer/</urlString>
+        <urlString>$relpath$gateplugin-dict-lemmatizer/</urlString>
       </gate.util.persistence.PersistenceManager-URLHolder>
       <gate.util.persistence.PersistenceManager-URLHolder>
         <urlString>$relpath$gateplugin-Java/</urlString>
@@ -384,7 +384,7 @@
                 </entry>
               </localMap>
             </runtimeParams>
-            <resourceType>gate.plugin.lemmatizer.LemmatizerPR</resourceType>
+            <resourceType>gate.plugin.lemmatizer.DictLemmatizerPR</resourceType>
             <resourceName>Lemmatizer:en</resourceName>
             <initParams class="gate.util.persistence.MapPersistence">
               <mapType>gate.util.SimpleFeatureMapImpl</mapType>
