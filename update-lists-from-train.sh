@@ -38,6 +38,7 @@ do
       ## now append this to the proper file in the plugin and save it back
       zcat gateplugin-dict-lemmatizer/resources/dictionaries/$lang/${pos}-Dict.txt.gz tmp_${lang}_${pos}.txt.gz | gzip > new_${lang}_${pos}.txt.gz
       mv new_${lang}_${pos}.txt.gz gateplugin-dict-lemmatizer/resources/dictionaries/$lang/${pos}-Dict.txt.gz
+      rm tmp_${lang}_${pos}.txt.gz 
     done
   fi
 done
