@@ -139,7 +139,7 @@ public void execute() {
                 correctByType.put(status,1);
               }
             } else {
-              if(DEBUG) System.out.println("DEBUG\t"+status+"\t"+fmResp.get("upos")+"/"+fmResp.get("category")+"\t"+targetLemma+"\t"+respLemma);
+              if(DEBUG) System.out.println("DEBUG\t"+status+"\t"+targetPOS+"/"+fmResp.get("upos")+"/"+fmResp.get("category")+"\t"+targetLemma+"\t"+respLemma+"\t"+fmResp.get("string"));
             }
             if(targetLemma.equals(respLemma)) {
               nCorrectCase += 1;
@@ -191,6 +191,7 @@ public void controllerStarted() {
   correctByType = new TreeMap<String,Integer>();
   totalByType = new TreeMap<String,Integer>();
   posMismatches = new TreeMap<String,Integer>();
+  if(DEBUG) System.out.println("DEBUG:\tstatus\tupos/category\ttargetLemma\trespLemma\tstring");
 }
 
 @Override
