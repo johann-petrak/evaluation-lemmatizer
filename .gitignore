@@ -9,3 +9,5 @@
 /bnc-corpus-gate
 /Tiger
 /setupenv.sh
+tmp_*
+new_*
